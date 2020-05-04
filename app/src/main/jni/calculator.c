@@ -1,7 +1,7 @@
 #include<jni.h>
 #include <android/log.h>
 
-#define LOG_TAG "CerCa"
+#define LOG_TAG "JNI_LOG"
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 /**
@@ -11,9 +11,9 @@
  */
 
 JNIEXPORT jint JNICALL
-Java_com_xin_bob_fibonacci_MainActivity_calculate(JNIEnv* env, jobject this, jint n) {
+Java_com_xin_bob_fibonacci_MainActivity_calculate(JNIEnv *env, jobject thiz, jint n) {
 
-    LOGE("cao ni ma");
+    LOGE("jni method is called");
 
     if (n <= 2) {
         return 1;
@@ -29,3 +29,8 @@ Java_com_xin_bob_fibonacci_MainActivity_calculate(JNIEnv* env, jobject this, jin
     return sn;
 }
 
+JNIEXPORT jstring JNICALL
+Java_com_xin_bob_fibonacci_MainActivity_getStringFromC(JNIEnv *env, jobject thiz) {
+
+    return (*env)->NewStringUTF(env, "string from C");
+}
